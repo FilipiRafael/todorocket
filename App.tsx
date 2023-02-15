@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Home } from './src/screens/Home';
+import { SignIn } from './src/screens/SignIn';
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      <Home />
+      <SignIn />
     </>
   );
 }
