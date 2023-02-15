@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Alert, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
 import { EvilIcons } from '@expo/vector-icons';
@@ -10,18 +10,37 @@ export interface TaskProps {
   done: boolean;
 }
 
-export const Task = ({ name, done }: TaskProps) => {
+export const Task = (task: TaskProps) => {
+
+  const handleTaskDelete = (task: TaskProps) => {
+    Alert.alert('Remove', `Remove the task ${task.name}?`, [
+      {
+        text: 'Yes',
+        onPress: () => Alert.alert('Successfully removed')
+      },
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      }
+    ]);
+  }
+
   return (
     <View style={styles.container}>
       <CheckBox
         color='#03D361'
         style={styles.checkbox}
-        value={done}
+        value={task.done}
       />
-      <Text style={done ? styles.textLineThrough : styles.text}>
-        {name}
+      <Text style={task.done ? styles.textLineThrough : styles.text}>
+        {task.name}
       </Text>
-      <EvilIcons name='trash' size={36} color='#808080' />
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => handleTaskDelete(task)}
+      >
+        <EvilIcons name='trash' size={36} color='#808080' />
+      </TouchableOpacity>
     </View>
   )
 }
