@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "expo": "~47.0.12",
+    "expo-av": "~13.0.2",
     "expo-checkbox": "~2.2.2",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",

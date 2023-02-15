@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     color: '#E1E1E6',
     fontSize: 18,
     fontWeight: 'bold',
-    marginTop: height / 6,
+    marginTop: height / 8,
     marginBottom: 20
   },
   input: {

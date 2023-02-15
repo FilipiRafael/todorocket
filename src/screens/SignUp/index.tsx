@@ -7,12 +7,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { styles } from './styles';
+import { Video } from 'expo-av';
 
 import Brand from '../../assets/brand.svg';
 
-import { Video } from 'expo-av';
-
-export const SignIn = () => {
+export const SignUp = () => {
   const video = React.useRef(null);
 
   return (
@@ -21,14 +20,14 @@ export const SignIn = () => {
       style={styles.container}
     >
       <View style={styles.wrapper}>
-      <Video
-        ref={video}
-        style={styles.background}
-        source={require('../../assets/video.mp4')}
-        shouldPlay
-        isLooping
-        isMuted
-      />
+        <Video
+          ref={video}
+          style={styles.background}
+          source={require('../../assets/video.mp4')}
+          shouldPlay
+          isLooping
+          isMuted
+        />
 
         <Brand style={styles.brand} />
 
@@ -37,8 +36,15 @@ export const SignIn = () => {
         </Text>
 
         <Text style={styles.subtitle}>
-          Access your account
+          Create your account
         </Text>
+
+        <TextInput
+          placeholder='Name'
+          keyboardType='default'
+          placeholderTextColor='#808080'
+          style={styles.input}
+        />
 
         <TextInput
           placeholder='Email'
@@ -54,6 +60,13 @@ export const SignIn = () => {
           style={styles.input}
         />
 
+        <TextInput
+          placeholder='Confirm password'
+          keyboardType='visible-password'
+          placeholderTextColor='#808080'
+          style={styles.input}
+        />
+
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.7}
@@ -61,19 +74,15 @@ export const SignIn = () => {
           <Text
             style={styles.textButton}
           >
-            Access
+            Create and access
           </Text>
         </TouchableOpacity>
 
         <View style={styles.signWrapper}>
           <Text
-            style={[styles.textButton, styles.signText]}
+            style={[styles.textButton, styles.signText, styles.signTextLink]}
           >
-            Any account?
-          </Text>
-
-          <Text style={[styles.signText, styles.signTextLink]}>
-            Sign Up here
+            Come back to login
           </Text>
         </View>
 
