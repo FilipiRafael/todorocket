@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   background: {
     width: '150%',
     height,
-    position: 'absolute'
+    position: 'absolute',
   },
   brand: {
     marginTop: height / 18
