@@ -22,12 +22,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   createdTasks: {
-    color: '#4EA8DE',
+    color: '#03D361',
     fontWeight: 'bold',
     fontSize: 18
   },
   doneTasks: {
-    color: '#8284FA',
+    color: '#8257E6',
     fontWeight: 'bold',
     fontSize: 18
   },

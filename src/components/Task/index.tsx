@@ -14,7 +14,7 @@ export const Task = ({ name, done }: TaskProps) => {
   return (
     <View style={styles.container}>
       <CheckBox
-        color='#4EA8DE'
+        color='#03D361'
         style={styles.checkbox}
         value={done}
       />
