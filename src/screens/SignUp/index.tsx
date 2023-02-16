@@ -34,7 +34,15 @@ export const SignUp = () => {
     });
 
     if (error) Alert.alert('Error', error.message)
-    else setIsAuth(true);
+    else {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      await supabase
+      .from('tasks')
+      .insert({ description: 'Onboarding', user_id: user!.id });
+
+      setIsAuth(true);
+    }
   }
 
   return (

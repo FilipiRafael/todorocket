@@ -25,9 +25,12 @@ export const Task = (task: TaskProps) => {
     .update({ done: task.done ? false : true })
     .eq('id', task.id);
 
+    const { data: { user } } = await supabase.auth.getUser();
+
     const { data } = await supabase
     .from('tasks')
     .select()
+    .eq('user_id', user!.id)
     .order('created_at', { ascending: true });
 
     if (error) return Alert.alert('Error', error.message);
@@ -48,11 +51,14 @@ export const Task = (task: TaskProps) => {
           .delete()
           .eq('id', task.id);
 
+          const { data: { user } } = await supabase.auth.getUser();
+
           if (error) return Alert.alert('Error', error.message);
           else {
             const { data } = await supabase
             .from('tasks')
             .select()
+            .eq('user_id', user!.id)
             .order('created_at', { ascending: true });
 
             setTasks(data);

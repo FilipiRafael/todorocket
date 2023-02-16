@@ -20,12 +20,12 @@ export const styles = StyleSheet.create({
     backgroundColor: '#000'
   },
   text: {
-    maxWidth: '85%',
+    maxWidth: '60%',
     color: '#FFF',
     fontSize: 18
   },
   textLineThrough: {
-    maxWidth: '85%',
+    maxWidth: '60%',
     color: '#808080',
     fontSize: 18,
     textDecorationLine: 'line-through'

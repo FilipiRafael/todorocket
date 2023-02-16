@@ -36,7 +36,7 @@ export const Home = () => {
     setTimeout(() => {
       setIsAnimation(false);
       animation.current.reset();
-    }, 3000);
+    }, 2000);
   }
 
   useEffect(() => {

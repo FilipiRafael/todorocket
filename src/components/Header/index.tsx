@@ -35,6 +35,7 @@ export const Header = () => {
       const { data } = await supabase
       .from('tasks')
       .select()
+      .eq('user_id', user!.id)
       .order('created_at', { ascending: true });
 
       setTasks(data);
