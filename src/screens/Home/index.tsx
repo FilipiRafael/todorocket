@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { styles } from "./styles";
 

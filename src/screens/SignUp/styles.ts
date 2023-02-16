@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     position: 'absolute'
   },
   brand: {
-    marginTop: height / 18
+    marginTop: height / 12
   },
   title: {
     color: '#E1E1E6',
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     color: '#E1E1E6',
     fontSize: 18,
     fontWeight: 'bold',
-    marginTop: height / 8,
+    marginTop: height / 5,
     marginBottom: 20
   },
   input: {

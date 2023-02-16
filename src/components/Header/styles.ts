@@ -9,6 +9,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     position: 'relative'
   },
+  logout: {
+    position: 'absolute',
+    right: 10,
+    top: 50,
+  },
   brand: {
     paddingTop: 80
   },

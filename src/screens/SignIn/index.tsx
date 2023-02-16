@@ -7,13 +7,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { styles } from './styles';
-
+import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../contexts/auth';
 import Brand from '../../assets/brand.svg';
 
 import { Video } from 'expo-av';
 
 export const SignIn = () => {
   const video = React.useRef(null);
+  const { navigate } = useNavigation();
+  const { setIsAuth } = React.useContext(AuthContext);
 
   return (
     <KeyboardAvoidingView
@@ -57,6 +60,7 @@ export const SignIn = () => {
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.7}
+          onPress={() => setIsAuth(true)}
         >
           <Text
             style={styles.textButton}
@@ -72,7 +76,10 @@ export const SignIn = () => {
             Any account?
           </Text>
 
-          <Text style={[styles.signText, styles.signTextLink]}>
+          <Text
+            style={[styles.signText, styles.signTextLink]}
+            onPress={() => navigate('SignUp')}
+          >
             Sign Up here
           </Text>
         </View>

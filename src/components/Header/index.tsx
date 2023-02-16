@@ -1,12 +1,43 @@
-import { SafeAreaView, TextInput, View, TouchableOpacity } from "react-native";
-import { EvilIcons } from '@expo/vector-icons';
+import { useContext } from 'react';
+import {
+  SafeAreaView,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Alert
+} from "react-native";
+import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 import { styles } from "./styles";
+
+import { AuthContext } from '../../contexts/auth';
 
 import Brand from '../../assets/brand.svg';
 
 export const Header = () => {
+  const { setIsAuth } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    Alert.alert('Logout', 'Do you want to logout?', [
+      {
+        text: 'Yes',
+        onPress: () => setIsAuth(false)
+      },
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      }
+    ]);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
+      <MaterialIcons
+        name='logout'
+        size={26}
+        color='#8257E6'
+        style={styles.logout}
+        onPress={handleLogout}
+      />
       <Brand style={styles.brand} />
       <View style={styles.wrapper}>
         <TextInput

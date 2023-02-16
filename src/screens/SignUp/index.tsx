@@ -9,10 +9,13 @@ import {
 import { styles } from './styles';
 import { Video } from 'expo-av';
 
+import { useNavigation } from '@react-navigation/native';
+
 import Brand from '../../assets/brand.svg';
 
 export const SignUp = () => {
   const video = React.useRef(null);
+  const { navigate } = useNavigation();
 
   return (
     <KeyboardAvoidingView
@@ -60,13 +63,6 @@ export const SignUp = () => {
           style={styles.input}
         />
 
-        <TextInput
-          placeholder='Confirm password'
-          keyboardType='visible-password'
-          placeholderTextColor='#808080'
-          style={styles.input}
-        />
-
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.7}
@@ -81,6 +77,7 @@ export const SignUp = () => {
         <View style={styles.signWrapper}>
           <Text
             style={[styles.textButton, styles.signText, styles.signTextLink]}
+            onPress={() => navigate('SignIn')}
           >
             Come back to login
           </Text>
