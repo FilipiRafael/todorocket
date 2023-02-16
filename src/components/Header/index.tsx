@@ -24,9 +24,11 @@ export const Header = () => {
   const handleAddTask = async () => {
     if (!description) return Alert.alert('New task', 'You need to fill the name field');
 
+    const { data: { user } } = await supabase.auth.getUser();
+
     const { error } = await supabase
     .from('tasks')
-    .insert({ description });
+    .insert({ description, user_id: user!.id });
 
     if (error) Alert.alert('Error', error.message);
     else {

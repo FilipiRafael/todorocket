@@ -39,9 +39,13 @@ export const Home = () => {
   useEffect(() => {
     const getTasks = async () => {
       setIsLoading(true);
+
+      const { data: { user } } = await supabase.auth.getUser();
+
       const { data, error } = await supabase
       .from('tasks')
       .select()
+      .eq('user_id', user!.id)
       .order('created_at', { ascending: true });
 
       if (error) Alert.alert('Error', error.message);
