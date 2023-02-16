@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     width: '100%',
     minHeight: 75,
-    backgroundColor: '#333333',
+    backgroundColor: '#2C2C2C',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#333333',
@@ -14,6 +14,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 20
+  },
+  containerDone: {
+    borderColor: 'green',
+    backgroundColor: '#000'
   },
   text: {
     maxWidth: '85%',

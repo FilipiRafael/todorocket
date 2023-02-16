@@ -26,13 +26,17 @@ export const Task = (task: TaskProps) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, task.done && styles.containerDone]}
+    >
       <CheckBox
         color='#03D361'
         style={styles.checkbox}
         value={task.done}
       />
-      <Text style={task.done ? styles.textLineThrough : styles.text}>
+      <Text
+        style={task.done ? styles.textLineThrough : styles.text}
+      >
         {task.name}
       </Text>
       <TouchableOpacity
