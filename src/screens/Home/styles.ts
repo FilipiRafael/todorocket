@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,6 +10,14 @@ export const styles = StyleSheet.create({
     zIndex: -1,
     paddingHorizontal: 20,
     paddingBottom: 25
+  },
+  animation: {
+    width,
+    height,
+    position: 'absolute',
+  },
+  activityContainer: {
+    justifyContent: 'center'
   },
   wrapper: {
     flexDirection: 'row',

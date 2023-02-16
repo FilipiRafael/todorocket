@@ -31,8 +31,7 @@ export const styles = StyleSheet.create({
     textDecorationLine: 'line-through'
   },
   checkbox: {
-    width: 26,
-    height: 26,
-    borderRadius: 13
+    width: 30,
+    height: 30
   }
 });

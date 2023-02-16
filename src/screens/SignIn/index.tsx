@@ -5,16 +5,35 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
+  Alert
 } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth';
 import Brand from '../../assets/brand.svg';
+import { supabase } from '../../services/supabase';
 
 export const SignIn = () => {
   const { navigate } = useNavigation();
   const { setIsAuth } = React.useContext(AuthContext);
+
+  const [email, setEmail] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
+
+  const handleSignIn = async () => {
+    if (!email || !password) {
+      return Alert.alert('Login', 'All the fields are required.');
+    }
+
+    let { error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) Alert.alert('Error', error.message)
+    else setIsAuth(true);
+  }
 
   return (
     <KeyboardAvoidingView
@@ -41,19 +60,22 @@ export const SignIn = () => {
             keyboardType='email-address'
             placeholderTextColor='#808080'
             style={styles.input}
+            onChangeText={setEmail}
           />
 
           <TextInput
             placeholder='Password'
             keyboardType='visible-password'
+            secureTextEntry
             placeholderTextColor='#808080'
             style={styles.input}
+            onChangeText={setPassword}
           />
 
           <TouchableOpacity
             style={styles.button}
             activeOpacity={0.7}
-            onPress={() => setIsAuth(true)}
+            onPress={handleSignIn}
           >
             <Text
               style={styles.textButton}

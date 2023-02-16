@@ -11,7 +11,7 @@ export const Routes = () => {
 
   return (
     <NavigationContainer>
-      {isAuth ? <Home /> : <StackRoutes />}
+      {!isAuth ? <Home /> : <StackRoutes />}
     </NavigationContainer>
   )
 }

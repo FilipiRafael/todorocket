@@ -1,53 +1,74 @@
-import { useContext } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { useState, useEffect, useContext, useRef } from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import { styles } from "./styles";
 
 import { Header } from '../../components/Header';
-import { Task, TaskProps } from '../../components/Task';
+import { Task } from '../../components/Task';
 
 import { EvilIcons } from '@expo/vector-icons';
+import LottieView from 'lottie-react-native';
 
-const tasks: TaskProps[] = [
-  {
-    id: '1',
-    name: 'Finalize new App',
-    done: true
-  },
-  {
-    id: '2',
-    name: 'Create another App',
-    done: false
-  },
-  {
-    id: '3',
-    name: 'Do something',
-    done: false
-  },
-  {
-    id: '5',
-    name: 'Finalize new App',
-    done: true
-  },
-  {
-    id: '6',
-    name: 'Create another App',
-    done: false
-  },
-  {
-    id: '7',
-    name: 'Do something',
-    done: false
-  },
-  {
-    id: '8',
-    name: 'Buy a new jacket',
-    done: true
-  },
-]
+import { supabase } from '../../services/supabase';
+import { TasksContext } from '../../contexts/tasks';
+
+interface TaskProps {
+  id: string;
+  description: string;
+  done: boolean;
+}
 
 export const Home = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isAnimation, setIsAnimation] = useState<boolean>(false);
+  const { tasks, setTasks } = useContext(TasksContext);
+
+  const animation = useRef<any>();
+
+  const playAnimation = () => {
+    setIsAnimation(true);
+    animation.current.play();
+    setTimeout(() => setIsAnimation(false), 3000);
+  }
+
+  useEffect(() => {
+    const getTasks = async () => {
+      setIsLoading(true);
+      const { data, error } = await supabase
+      .from('tasks')
+      .select()
+      .order('created_at', { ascending: true });
+
+      if (error) Alert.alert('Error', error.message);
+      else {
+        setIsLoading(false);
+        setTasks(data);
+      }
+    }
+
+    getTasks();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={[styles.container, styles.activityContainer]}>
+        <ActivityIndicator />
+      </View>
+    ) 
+  }
+
   return (
     <>
+      <LottieView
+        source={require('../../assets/congrats.json')}
+        style={[isAnimation ? styles.animation : { display: 'none' }]}
+        ref={animation}
+      />
       <Header />
       <View style={styles.container}>
         <View style={styles.wrapper}>
@@ -64,7 +85,7 @@ export const Home = () => {
               Done 
             </Text>
             <Text style={styles.createdTasksCount}>
-                {tasks.filter(task => task.done).length}
+                {tasks.filter((task: TaskProps) => task.done).length}
             </Text>
           </View>
         </View>
@@ -72,12 +93,13 @@ export const Home = () => {
           showsVerticalScrollIndicator={false}
         >
           {
-            tasks.map(task => (
+            tasks.map((task: TaskProps) => (
               <Task
                 key={task.id}
                 id={task.id}
-                name={task.name}
+                description={task.description}
                 done={task.done}
+                playAnimation={playAnimation}
               />
             ))
           }

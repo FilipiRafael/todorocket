@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useContext } from 'react';
 import {
   SafeAreaView,
@@ -10,17 +11,44 @@ import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 import { styles } from "./styles";
 
 import { AuthContext } from '../../contexts/auth';
+import { TasksContext } from '../../contexts/tasks';
+import { supabase } from '../../services/supabase';
 
 import Brand from '../../assets/brand.svg';
 
 export const Header = () => {
   const { setIsAuth } = useContext(AuthContext);
+  const { setTasks } = useContext(TasksContext);
+  const [description, setDescription] = useState<string>('');
+
+  const handleAddTask = async () => {
+    if (!description) return Alert.alert('New task', 'You need to fill the name field');
+
+    const { error } = await supabase
+    .from('tasks')
+    .insert({ description });
+
+    if (error) Alert.alert('Error', error.message);
+    else {
+      const { data } = await supabase
+      .from('tasks')
+      .select()
+      .order('created_at', { ascending: true });
+
+      setTasks(data);
+      setDescription('');
+    }
+  }
 
   const handleLogout = () => {
     Alert.alert('Logout', 'Do you want to logout?', [
       {
         text: 'Yes',
-        onPress: () => setIsAuth(false)
+        onPress: async () => {
+          let { error } = await supabase.auth.signOut();
+          if (error) Alert.alert('Error', error.message);
+          else setIsAuth(false);
+        }
       },
       {
         text: 'Cancel',
@@ -44,10 +72,13 @@ export const Header = () => {
           style={styles.input}
           placeholder='Add a new task'
           placeholderTextColor='#808080'
+          onChangeText={setDescription}
+          value={description}
         />
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.7}
+          onPress={handleAddTask}
         >
           <EvilIcons name='plus' size={30} color='#FFF' />
         </TouchableOpacity>

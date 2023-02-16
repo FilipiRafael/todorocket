@@ -1,22 +1,64 @@
-import { View, Text, Alert, TouchableOpacity } from 'react-native';
+import { useContext, useRef } from 'react';
+import { Text, Alert, TouchableOpacity, Pressable, Dimensions } from 'react-native';
+import Animated, { SlideInRight } from 'react-native-reanimated';
+import AnimatedCheckbox from 'react-native-checkbox-reanimated';
 import { styles } from './styles';
 
 import { EvilIcons } from '@expo/vector-icons';
-import CheckBox from 'expo-checkbox';
+
+import { supabase } from '../../services/supabase';
+import { TasksContext } from '../../contexts/tasks';
 
 export interface TaskProps {
   id: string;
-  name: string;
+  description: string;
   done: boolean;
+  playAnimation: () => void;
 }
 
 export const Task = (task: TaskProps) => {
+  const { setTasks } = useContext(TasksContext);
+
+  const handleCheckTask = async (task: TaskProps) => {
+    const { error } = await supabase
+    .from('tasks')
+    .update({ done: task.done ? false : true })
+    .eq('id', task.id);
+
+    const { data } = await supabase
+    .from('tasks')
+    .select()
+    .order('created_at', { ascending: true });
+
+    if (error) return Alert.alert('Error', error.message);
+    setTasks(data);
+
+    if (data!.filter((task: TaskProps) => task.done).length === data!.length) {
+      task.playAnimation();
+    }
+  }
 
   const handleTaskDelete = (task: TaskProps) => {
-    Alert.alert('Remove', `Remove the task ${task.name}?`, [
+    Alert.alert('Remove', `Remove the task ${task.description}?`, [
       {
         text: 'Yes',
-        onPress: () => Alert.alert('Successfully removed')
+        onPress: async () => {
+          const { error } = await supabase
+          .from('tasks')
+          .delete()
+          .eq('id', task.id);
+
+          if (error) return Alert.alert('Error', error.message);
+          else {
+            const { data } = await supabase
+            .from('tasks')
+            .select()
+            .order('created_at', { ascending: true });
+
+            setTasks(data);
+            Alert.alert('Successfully removed');
+          }
+        }
       },
       {
         text: 'Cancel',
@@ -26,18 +68,25 @@ export const Task = (task: TaskProps) => {
   }
 
   return (
-    <View
+    <Animated.View
       style={[styles.container, task.done && styles.containerDone]}
+      entering={SlideInRight}
     >
-      <CheckBox
-        color='#03D361'
+      <Pressable
+        onPress={() => handleCheckTask(task)}
         style={styles.checkbox}
-        value={task.done}
-      />
+      >
+        <AnimatedCheckbox
+          checked={task.done}
+          highlightColor="#03D361"
+          checkmarkColor="#ffffff"
+          boxOutlineColor="#03D361"
+        />
+      </Pressable>
       <Text
         style={task.done ? styles.textLineThrough : styles.text}
       >
-        {task.name}
+        {task.description}
       </Text>
       <TouchableOpacity
         activeOpacity={0.7}
@@ -45,6 +94,6 @@ export const Task = (task: TaskProps) => {
       >
         <EvilIcons name='trash' size={36} color='#808080' />
       </TouchableOpacity>
-    </View>
+    </Animated.View>
   )
 }
