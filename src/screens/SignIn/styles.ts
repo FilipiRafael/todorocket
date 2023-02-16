@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 20
   },
   background: {
-    width: '150%',
+    width: '120%',
     height,
     position: 'absolute',
   },

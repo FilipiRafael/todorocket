@@ -5,16 +5,15 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Image
 } from 'react-native';
 import { styles } from './styles';
-import { Video } from 'expo-av';
 
 import { useNavigation } from '@react-navigation/native';
 
 import Brand from '../../assets/brand.svg';
 
 export const SignUp = () => {
-  const video = React.useRef(null);
   const { navigate } = useNavigation();
 
   return (
@@ -23,13 +22,9 @@ export const SignUp = () => {
       style={styles.container}
     >
       <View style={styles.wrapper}>
-        <Video
-          ref={video}
+        <Image
+          source={require('../../assets/background.png')}
           style={styles.background}
-          source={require('../../assets/video.mp4')}
-          shouldPlay
-          isLooping
-          isMuted
         />
 
         <Brand style={styles.brand} />

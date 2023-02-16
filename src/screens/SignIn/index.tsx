@@ -5,16 +5,14 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Image
 } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth';
 import Brand from '../../assets/brand.svg';
 
-import { Video } from 'expo-av';
-
 export const SignIn = () => {
-  const video = React.useRef(null);
   const { navigate } = useNavigation();
   const { setIsAuth } = React.useContext(AuthContext);
 
@@ -24,14 +22,10 @@ export const SignIn = () => {
       style={styles.container}
     >
       <View style={styles.wrapper}>
-      <Video
-        ref={video}
-        style={styles.background}
-        source={require('../../assets/video.mp4')}
-        shouldPlay
-        isLooping
-        isMuted
-      />
+        <Image
+          source={require('../../assets/background.png')}
+          style={styles.background}
+        />
 
         <Brand style={styles.brand} />
 
