@@ -1,22 +1,22 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { height } = Dimensions.get('screen');
+const { width, height } = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0D0D0D',
   },
-  wrapper: {
-    width: '100%',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 20
-  },
   background: {
     width: '120%',
     height,
     position: 'absolute'
+  },
+  wrapper: {
+    width,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 20
   },
   brand: {
     marginTop: height / 12
