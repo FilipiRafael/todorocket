@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.4",
+    "@react-navigation/native-stack": "^6.9.10",
     "expo": "~47.0.12",
     "expo-av": "~13.0.2",
     "expo-checkbox": "~2.2.2",
