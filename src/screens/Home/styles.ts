@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     width,
     height,
     position: 'absolute',
+    top: 10
   },
   activityContainer: {
     justifyContent: 'center'

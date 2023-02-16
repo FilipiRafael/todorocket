@@ -33,7 +33,10 @@ export const Home = () => {
   const playAnimation = () => {
     setIsAnimation(true);
     animation.current.play();
-    setTimeout(() => setIsAnimation(false), 3000);
+    setTimeout(() => {
+      setIsAnimation(false);
+      animation.current.reset();
+    }, 3000);
   }
 
   useEffect(() => {
@@ -41,7 +44,6 @@ export const Home = () => {
       setIsLoading(true);
 
       const { data: { user } } = await supabase.auth.getUser();
-
       const { data, error } = await supabase
       .from('tasks')
       .select()
@@ -72,6 +74,8 @@ export const Home = () => {
         source={require('../../assets/congrats.json')}
         style={[isAnimation ? styles.animation : { display: 'none' }]}
         ref={animation}
+        progress={1}
+        speed={1}
       />
       <Header />
       <View style={styles.container}>
