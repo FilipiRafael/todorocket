@@ -13,31 +13,38 @@ export interface TaskProps {
   id: string;
   description: string;
   done: boolean;
+  createdAt: string;
+  userId: string;
   playAnimation: () => void;
 }
 
 export const Task = (task: TaskProps) => {
-  const { setTasks } = useContext(TasksContext);
+  const { tasks, setTasks } = useContext(TasksContext);
 
   const handleCheckTask = async (task: TaskProps) => {
     const { error } = await supabase
     .from('tasks')
     .update({ done: task.done ? false : true })
     .eq('id', task.id);
-
-    const { data: { user } } = await supabase.auth.getUser();
-
-    const { data } = await supabase
-    .from('tasks')
-    .select()
-    .eq('user_id', user!.id)
-    .order('created_at', { ascending: true });
-
+    
     if (error) return Alert.alert('Error', error.message);
-    setTasks(data);
+    
+    const newTasks = [...tasks];
+    const oldTaskIndex = tasks.findIndex((item: TaskProps) => item.id === task.id);
+    const taskAfterCheck = {
+      description: task.description,
+      done: !task.done,
+      id: task.id,
+      user_id: task.userId,
+      created_at: task.createdAt
+    }
 
-    if (data!.filter((task: TaskProps) => task.done).length === data!.length) {
-      task.playAnimation();
+    newTasks.splice(oldTaskIndex, 1, taskAfterCheck);
+    setTasks(newTasks);
+
+    if (newTasks!.filter(
+      (task: TaskProps) => task.done).length === newTasks!.length) {
+        task.playAnimation();
     }
   }
 

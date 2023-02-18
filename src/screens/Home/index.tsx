@@ -21,6 +21,8 @@ interface TaskProps {
   id: string;
   description: string;
   done: boolean;
+  user_id: string;
+  created_at: string;
 }
 
 export const Home = () => {
@@ -103,6 +105,8 @@ export const Home = () => {
           {
             tasks.map((task: TaskProps) => (
               <Task
+                createdAt={task.created_at}
+                userId={task.user_id}
                 key={task.id}
                 id={task.id}
                 description={task.description}

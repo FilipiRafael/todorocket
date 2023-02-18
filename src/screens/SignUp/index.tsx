@@ -39,7 +39,7 @@ export const SignUp = () => {
       
       await supabase
       .from('tasks')
-      .insert({ description: 'Onboarding', user_id: user!.id });
+      .insert({ description: 'Onboarding 🥳', user_id: user!.id });
 
       setIsAuth(true);
     }
