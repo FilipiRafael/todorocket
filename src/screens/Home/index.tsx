@@ -4,7 +4,7 @@ import {
   Text,
   ScrollView,
   Alert,
-  ActivityIndicator,
+  ActivityIndicator
 } from 'react-native';
 import { styles } from "./styles";
 
@@ -16,6 +16,7 @@ import LottieView from 'lottie-react-native';
 
 import { supabase } from '../../services/supabase';
 import { TasksContext } from '../../contexts/tasks';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface TaskProps {
   id: string;
@@ -71,7 +72,7 @@ export const Home = () => {
   }
 
   return (
-    <>
+    <SafeAreaView style={{ flex: 1 }}>
       <LottieView
         source={require('../../assets/congrats.json')}
         style={[isAnimation ? styles.animation : { display: 'none' }]}
@@ -131,6 +132,6 @@ export const Home = () => {
           }
         </ScrollView>
       </View>
-    </>
+    </SafeAreaView>
   )
 }
