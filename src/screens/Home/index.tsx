@@ -72,7 +72,7 @@ export const Home = () => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#0D0D0D' }}>
       <LottieView
         source={require('../../assets/congrats.json')}
         style={[isAnimation ? styles.animation : { display: 'none' }]}

@@ -1,18 +1,23 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '20%',
+    height: '18%',
     backgroundColor: '#0D0D0D',
     alignItems: 'center',
     justifyContent: 'flex-start',
     position: 'relative'
   },
+  coffee: {
+    position: 'absolute',
+    left: 10,
+    top: 30
+  },
   logout: {
     position: 'absolute',
     right: 10,
-    top: 50,
+    top: 30
   },
   brand: {
     paddingTop: 80

@@ -5,7 +5,7 @@ import { SignUp } from '../screens/SignUp';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
-export const StackRoutes = () => {
+export const SignRoutes = () => {
   return (
     <Navigator
       screenOptions={{ headerShown:false }}

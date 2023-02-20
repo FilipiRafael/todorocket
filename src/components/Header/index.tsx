@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import {
   SafeAreaView,
   TextInput,
@@ -7,8 +6,13 @@ import {
   TouchableOpacity,
   Alert
 } from "react-native";
-import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
+import {
+  EvilIcons,
+  MaterialIcons,
+  MaterialCommunityIcons
+} from '@expo/vector-icons';
 import { styles } from "./styles";
+import { useNavigation } from '@react-navigation/native';
 
 import { AuthContext } from '../../contexts/auth';
 import { TasksContext } from '../../contexts/tasks';
@@ -20,6 +24,7 @@ export const Header = () => {
   const { setIsAuth } = useContext(AuthContext);
   const { setTasks } = useContext(TasksContext);
   const [description, setDescription] = useState<string>('');
+  const { navigate } = useNavigation();
 
   const handleAddTask = async () => {
     if (!description) return Alert.alert('New task', 'You need to fill the name field');
@@ -69,6 +74,15 @@ export const Header = () => {
         style={styles.logout}
         onPress={handleLogout}
       />
+
+      <MaterialCommunityIcons
+        name='coffee-outline'
+        size={26}
+        color='#8257E6'
+        style={styles.coffee}
+        onPress={() => navigate('Support')}
+      />
+
       <Brand style={styles.brand} />
       <View style={styles.wrapper}>
         <TextInput
