@@ -38,7 +38,7 @@ export const Support = () => {
         <Text
           style={styles.buttonText}
         >
-          Support $5
+          Support $1
         </Text>
       </TouchableOpacity>
 
