@@ -12,6 +12,7 @@
     "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-navigation/native": "^6.1.4",
     "@react-navigation/native-stack": "^6.9.10",
+    "@stripe/stripe-react-native": "0.19.0",
     "@supabase/supabase-js": "^2.8.0",
     "expo": "~47.0.12",
     "expo-av": "~13.0.2",
