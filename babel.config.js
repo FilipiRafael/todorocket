@@ -22,8 +22,7 @@ module.exports = function(api) {
           verbose: true,
         },
       ],
-      'react-native-reanimated/plugin',
-      '@stripe/stripe-react-native'
+      'react-native-reanimated/plugin'
     ]
   };
 };

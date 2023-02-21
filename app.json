@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "todoapp",
+    "name": "TodoApp",
     "slug": "todoapp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0D0D0D"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -18,12 +18,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.todoapp",
+      "buildNumber": "1.0.0"
     },
     "android": {
+      "package": "com.todoapp",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#0D0D0D"
       }
     },
     "web": {
@@ -32,7 +36,18 @@
     "packagerOpts": {
       "config": "metro.config.js",
       "source": "metro.config.js",
-      "sourceExts": ["js", "jsx", "ts", "tsx", "svg"]
+      "sourceExts": [
+        "js",
+        "jsx",
+        "ts",
+        "tsx",
+        "svg"
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "495251fc-e1ec-4416-b369-c0d2dbc44b07"
+      }
     }
   }
 }
