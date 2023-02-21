@@ -5,10 +5,10 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  ImageBackground,
   Alert
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './styles';
 
 import { supabase } from '../../services/supabase';
@@ -50,59 +50,58 @@ export const SignUp = () => {
       behavior='position'
       style={styles.container}
     >
-      <ImageBackground
-          source={require('../../assets/background.png')}
-          style={styles.background}
+      <LinearGradient
+        colors={['#0D0D0D', '#23132A']}
+        style={styles.background}
+      />
+      <View style={styles.wrapper}>
+        <Brand style={styles.brand} />
+
+        <Text style={styles.title}>
+          The best way to predict the future is to create it
+        </Text>
+
+        <Text style={styles.subtitle}>
+          Create your account
+        </Text>
+
+        <TextInput
+          placeholder='Email'
+          keyboardType='email-address'
+          placeholderTextColor='#808080'
+          style={styles.input}
+          onChangeText={setEmail}
+        />
+
+        <TextInput
+          placeholder='Password'
+          keyboardType='visible-password'
+          placeholderTextColor='#808080'
+          style={styles.input}
+          onChangeText={setPassword}
+        />
+
+        <TouchableOpacity
+          style={styles.button}
+          activeOpacity={0.7}
+          onPress={handleSignUp}
         >
-        <View style={styles.wrapper}>
-          <Brand style={styles.brand} />
-
-          <Text style={styles.title}>
-            The best way to predict the future is to create it
-          </Text>
-
-          <Text style={styles.subtitle}>
-            Create your account
-          </Text>
-
-          <TextInput
-            placeholder='Email'
-            keyboardType='email-address'
-            placeholderTextColor='#808080'
-            style={styles.input}
-            onChangeText={setEmail}
-          />
-
-          <TextInput
-            placeholder='Password'
-            keyboardType='visible-password'
-            placeholderTextColor='#808080'
-            style={styles.input}
-            onChangeText={setPassword}
-          />
-
-          <TouchableOpacity
-            style={styles.button}
-            activeOpacity={0.7}
-            onPress={handleSignUp}
+          <Text
+            style={styles.textButton}
           >
-            <Text
-              style={styles.textButton}
-            >
-              Create and access
-            </Text>
-          </TouchableOpacity>
+            Create and access
+          </Text>
+        </TouchableOpacity>
 
-          <View style={styles.signWrapper}>
-            <Text
-              style={[styles.textButton, styles.signText, styles.signTextLink]}
-              onPress={() => navigate('SignIn')}
-            >
-              Come back to login
-            </Text>
-          </View>
+        <View style={styles.signWrapper}>
+          <Text
+            style={[styles.textButton, styles.signText, styles.signTextLink]}
+            onPress={() => navigate('SignIn')}
+          >
+            Come back to login
+          </Text>
         </View>
-      </ImageBackground>
+      </View>
     </KeyboardAvoidingView>
   )
 }
