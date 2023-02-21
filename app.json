@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TodoApp",
-    "slug": "todoapp",
+    "name": "TodoRocket",
+    "slug": "todo-rocket",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,11 +19,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.todoapp",
+      "bundleIdentifier": "com.todorocket",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.todoapp",
+      "package": "com.todorocket",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",

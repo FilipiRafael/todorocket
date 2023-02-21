@@ -17,6 +17,7 @@
     "expo": "~47.0.12",
     "expo-av": "~13.0.2",
     "expo-checkbox": "~2.2.2",
+    "expo-linear-gradient": "~12.0.1",
     "expo-status-bar": "~1.4.2",
     "lottie-ios": "^3.4.1",
     "lottie-react-native": "5.1.4",
