@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TodoRocket",
-    "slug": "todo-rocket",
+    "slug": "todoapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
