@@ -75,13 +75,13 @@ export const Header = () => {
         onPress={handleLogout}
       />
 
-      {/* <MaterialCommunityIcons
+      <MaterialCommunityIcons
         name='coffee-outline'
         size={26}
         color='#8257E6'
         style={styles.coffee}
         onPress={() => navigate('Support')}
-      /> */}
+      />
 
       <Brand style={styles.brand} />
       <View style={styles.wrapper}>
