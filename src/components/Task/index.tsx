@@ -2,7 +2,11 @@ import { useContext } from 'react';
 import { Text, Alert, TouchableOpacity, Pressable } from 'react-native';
 import Animated, { SlideInRight } from 'react-native-reanimated';
 import AnimatedCheckbox from 'react-native-checkbox-reanimated';
-import notifee, { AndroidImportance } from '@notifee/react-native';
+import notifee, {
+  AndroidImportance,
+  TimestampTrigger,
+  TriggerType
+} from '@notifee/react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import { styles } from './styles';
 
@@ -29,13 +33,23 @@ export const Task = (task: TaskProps) => {
       importance: AndroidImportance.HIGH
     });
 
-    await notifee.displayNotification({
-      id: '1',
-      title: 'Congratulations! 🎉',
-      body: 'You have completed all your tasks',
-      android: {channelId},
-      ios: {sound: 'default'}
-    });
+    const date = new Date(Date.now());
+    date.setMinutes(date.getMinutes() + 10);
+
+    const trigger: TimestampTrigger = {
+      type: TriggerType.TIMESTAMP,
+      timestamp: date.getTime()
+    };
+
+    if (!tasks.every((task: TaskProps) => task.done)) {
+      await notifee.createTriggerNotification({
+        id: '1',
+        title: 'Congratulations! 🎉',
+        body: 'You have completed all your tasks',
+        android: {channelId},
+        ios: {sound: 'default'}
+      }, trigger);
+    };
   };
 
   const handleCheckTask = async (task: TaskProps) => {
