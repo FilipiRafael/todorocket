@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native';
+import { SafeAreaView, Text, Linking, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { styles } from './styles';
 
@@ -33,15 +33,10 @@ export const Support = () => {
           Buy me a coffee
         </Text>
 
-        <TextInput
-          style={styles.input}
-          placeholder='Say something nice...'
-          placeholderTextColor='#808080'
-        />
-
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.7}
+          onPress={() => Linking.openURL('https://donate.stripe.com/test_7sI5lH9pocXLg6c8ww')}
         >
           <Text
             style={styles.buttonText}

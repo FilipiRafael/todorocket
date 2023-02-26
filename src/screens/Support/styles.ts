@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20
+    marginTop: 50
   },
   buttonText: {
     fontSize: 16,
