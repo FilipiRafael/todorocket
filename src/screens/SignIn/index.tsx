@@ -65,7 +65,7 @@ export const SignIn = () => {
 
         <TextInput
           placeholder='Password'
-          keyboardType='visible-password'
+          keyboardType='default'
           secureTextEntry
           placeholderTextColor='#808080'
           style={styles.input}

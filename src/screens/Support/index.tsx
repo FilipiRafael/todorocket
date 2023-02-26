@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { styles } from './styles';
 
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import LottieView from 'lottie-react-native';
 
@@ -13,6 +14,10 @@ export const Support = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <LinearGradient
+        colors={['#220b2d', '#0D0D0D']}
+        style={styles.background}
+      />
       <AntDesign
         name='back'
         style={styles.goBack}

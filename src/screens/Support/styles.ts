@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { height } = Dimensions.get('screen');
+const { width, height } = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,6 +9,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     position: 'relative'
+  },
+  background: {
+    width,
+    height,
+    position: 'absolute'
   },
   goBack: {
     position: 'absolute',

@@ -75,7 +75,7 @@ export const SignUp = () => {
 
         <TextInput
           placeholder='Password'
-          keyboardType='visible-password'
+          keyboardType='default'
           placeholderTextColor='#808080'
           style={styles.input}
           onChangeText={setPassword}

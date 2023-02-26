@@ -1,10 +1,10 @@
-import { useContext, useRef } from 'react';
-import { Text, Alert, TouchableOpacity, Pressable, Dimensions } from 'react-native';
+import { useContext } from 'react';
+import { Text, Alert, TouchableOpacity, Pressable } from 'react-native';
 import Animated, { SlideInRight } from 'react-native-reanimated';
 import AnimatedCheckbox from 'react-native-checkbox-reanimated';
-import { styles } from './styles';
-
+import notifee, { AndroidImportance } from '@notifee/react-native';
 import { EvilIcons } from '@expo/vector-icons';
+import { styles } from './styles';
 
 import { supabase } from '../../services/supabase';
 import { TasksContext } from '../../contexts/tasks';
@@ -20,6 +20,23 @@ export interface TaskProps {
 
 export const Task = (task: TaskProps) => {
   const { tasks, setTasks } = useContext(TasksContext);
+
+  const displayNotification = async () => {
+    const channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
+      vibration: true,
+      importance: AndroidImportance.HIGH
+    });
+
+    await notifee.displayNotification({
+      id: '1',
+      title: 'Congratulations! 🎉',
+      body: 'You have completed all your tasks',
+      android: {channelId},
+      ios: {sound: 'default'}
+    });
+  };
 
   const handleCheckTask = async (task: TaskProps) => {
     const { error } = await supabase
@@ -42,10 +59,10 @@ export const Task = (task: TaskProps) => {
     newTasks.splice(oldTaskIndex, 1, taskAfterCheck);
     setTasks(newTasks);
 
-    if (newTasks!.filter(
-      (task: TaskProps) => task.done).length === newTasks!.length) {
-        task.playAnimation();
-    }
+    if (newTasks.every((task: TaskProps) => task.done)) {
+      displayNotification();
+      task.playAnimation();
+    };
   }
 
   const handleTaskDelete = (task: TaskProps) => {

@@ -13,20 +13,51 @@ import {
 } from '@expo/vector-icons';
 import { styles } from "./styles";
 import { useNavigation } from '@react-navigation/native';
+import notifee, {
+  AndroidImportance,
+  TriggerType,
+  TimestampTrigger
+} from '@notifee/react-native';
 
 import { AuthContext } from '../../contexts/auth';
 import { TasksContext } from '../../contexts/tasks';
+import { TaskProps } from '../Task';
 import { supabase } from '../../services/supabase';
 
 import Brand from '../../assets/brand.svg';
 
 export const Header = () => {
   const { setIsAuth } = useContext(AuthContext);
-  const { setTasks } = useContext(TasksContext);
+  const { tasks, setTasks } = useContext(TasksContext);
   const [description, setDescription] = useState<string>('');
   const { navigate } = useNavigation();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const scheduleNotification = async () => {
+    const date = new Date(Date.now());
+    date.setMinutes(date.getHours() + 2);
+
+    const trigger: TimestampTrigger = {
+      type: TriggerType.TIMESTAMP,
+      timestamp: date.getTime()
+    }
+
+    if (!tasks.every((task: TaskProps) => task.done)) {
+      await notifee.createTriggerNotification({
+        title: "Don't forget to complete your tasks 📝",
+        body: 'Come here and complete your tasks',
+        ios: {sound: 'default'},
+        android: {
+          channelId: 'default',
+          importance: AndroidImportance.HIGH
+        },
+      }, trigger);
+    };
+  }
 
   const handleAddTask = async () => {
+    setIsLoading(true);
+    scheduleNotification();
     if (!description) return Alert.alert('New task', 'You need to fill the name field');
 
     const { data: { user } } = await supabase.auth.getUser();
@@ -37,6 +68,7 @@ export const Header = () => {
 
     if (error) Alert.alert('Error', error.message);
     else {
+      setIsLoading(false);
       const { data } = await supabase
       .from('tasks')
       .select()
@@ -96,6 +128,7 @@ export const Header = () => {
           style={styles.button}
           activeOpacity={0.7}
           onPress={handleAddTask}
+          disabled={isLoading}
         >
           <EvilIcons name='plus' size={30} color='#FFF' />
         </TouchableOpacity>

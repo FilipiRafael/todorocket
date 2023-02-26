@@ -13,6 +13,7 @@ import { Task } from '../../components/Task';
 
 import { EvilIcons } from '@expo/vector-icons';
 import LottieView from 'lottie-react-native';
+import notifee from '@notifee/react-native';
 
 import { supabase } from '../../services/supabase';
 import { TasksContext } from '../../contexts/tasks';
@@ -61,6 +62,14 @@ export const Home = () => {
     }
 
     getTasks();
+  }, []);
+
+  useEffect(() => {
+    const requestNotificationPermission = async () => {
+      await notifee.requestPermission();
+    };
+
+    requestNotificationPermission();
   }, []);
 
   if (isLoading) {
