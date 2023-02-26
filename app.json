@@ -44,13 +44,6 @@
             "buildToolsVersion": "33.0.0"
           }
         }
-      ],
-      [
-        "@stripe/stripe-react-native",
-        {
-          "merchantIdentifier": "merchant.com.todorocket",
-          "enableGooglePay": true
-        }
       ]
     ],
     "packagerOpts": {
