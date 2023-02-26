@@ -12,13 +12,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './styles';
 
 import { supabase } from '../../services/supabase';
-import { AuthContext } from '../../contexts/auth';
 
 import Brand from '../../assets/brand.svg';
 
 export const SignUp = () => {
-  const { navigate } = useNavigation();
-  const { setIsAuth } = React.useContext(AuthContext);
+  const { navigate, goBack } = useNavigation();
 
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
@@ -33,15 +31,16 @@ export const SignUp = () => {
       password
     });
 
-    if (error) Alert.alert('Error', error.message)
+    if (error) Alert.alert('Error', error.message);
     else {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      await supabase
-      .from('tasks')
-      .insert({ description: 'Onboarding 🥳', user_id: user!.id });
-
-      setIsAuth(true);
+      Alert.alert(
+        'Create Account', 'Check your email to confirm your account.', [
+          {
+            text: 'Ok',
+            onPress: () => goBack()
+          }
+        ]
+      );
     }
   }
 
