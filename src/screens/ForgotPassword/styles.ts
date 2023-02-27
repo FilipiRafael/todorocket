@@ -7,31 +7,24 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0D0D0D',
   },
+  wrapper: {
+    width,
+    marginTop: height / 4,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 20
+  },
   background: {
     width: '120%',
     height,
     position: 'absolute'
   },
-  wrapper: {
-    width,
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 20
-  },
-  brand: {
-    marginTop: height / 12
-  },
   title: {
     color: '#E1E1E6',
-    fontSize: 12,
-    marginTop: 16
-  },
-  subtitle: {
-    color: '#E1E1E6',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginTop: height / 5,
-    marginBottom: 20
+    marginBottom: 20,
+    marginTop: 30
   },
   input: {
     width: '100%',
@@ -58,22 +51,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18
   },
-  signWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20
-  },
-  signText: {
-    fontSize: 16,
-  },
-  signTextLink: {
-    color: '#03D361',
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-    marginLeft: 10
-  },
-  forgotPassword: {
-    marginTop: 20
+  goBack: {
+    position: 'absolute',
+    top: height / 16,
+    right: 10
   }
 });
