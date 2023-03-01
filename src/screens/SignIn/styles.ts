@@ -72,8 +72,5 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textDecorationLine: 'underline',
     marginLeft: 10
-  },
-  forgotPassword: {
-    marginTop: 20
   }
 });

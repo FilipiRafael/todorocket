@@ -106,13 +106,6 @@ export const SignIn = () => {
             Sign Up here
           </Text>
         </View>
-
-        {/* <Text
-            style={[styles.signText, styles.signTextLink, styles.forgotPassword]}
-            onPress={() => navigate('ForgotPassword')}
-          >
-            Forgot password?
-        </Text> */}
       </View>
     </KeyboardAvoidingView>
   )
