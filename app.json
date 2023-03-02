@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.todorocket",
-      "buildNumber": "2.0.0"
+      "buildNumber": "3.0.0"
     },
     "android": {
       "package": "com.todorocket",
