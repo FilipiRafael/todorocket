@@ -19,7 +19,8 @@ export const styles = StyleSheet.create({
     paddingVertical: 20
   },
   brand: {
-    marginTop: height / 12
+    marginTop: height / 18,
+    aspectRatio: 16 / 9
   },
   title: {
     color: '#E1E1E6',

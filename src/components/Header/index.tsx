@@ -4,7 +4,8 @@ import {
   TextInput,
   View,
   TouchableOpacity,
-  Alert
+  Alert,
+  Image
 } from "react-native";
 import {
   EvilIcons,
@@ -17,8 +18,6 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth';
 import { TasksContext } from '../../contexts/tasks';
 import { supabase } from '../../services/supabase';
-
-import Brand from '../../assets/brand.svg';
 
 export const Header = () => {
   const { setIsAuth } = useContext(AuthContext);
@@ -86,7 +85,11 @@ export const Header = () => {
         onPress={() => navigate('Support')}
       />
 
-      <Brand style={styles.brand} />
+      <Image
+        source={require('../../assets/brand.png')}
+        style={styles.brand}
+        resizeMode='contain'
+      />
       <View style={styles.wrapper}>
         <TextInput
           style={styles.input}

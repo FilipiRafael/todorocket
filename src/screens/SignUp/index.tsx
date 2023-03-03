@@ -5,15 +5,14 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Alert
+  Alert,
+  Image
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './styles';
 
 import { supabase } from '../../services/supabase';
-
-import Brand from '../../assets/brand.svg';
 
 export const SignUp = () => {
   const { navigate, goBack } = useNavigation<any>();
@@ -54,7 +53,11 @@ export const SignUp = () => {
         style={styles.background}
       />
       <View style={styles.wrapper}>
-        <Brand style={styles.brand} />
+        <Image
+          source={require('../../assets/brand.png')}
+          style={styles.brand}
+          resizeMode='contain'
+        />
 
         <Text style={styles.title}>
           The best way to predict the future is to create it

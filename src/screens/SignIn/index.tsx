@@ -5,12 +5,12 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Alert
+  Alert,
+  Image
 } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth';
-import Brand from '../../assets/brand.svg';
 import { supabase } from '../../services/supabase';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -32,15 +32,7 @@ export const SignIn = () => {
     });
 
     if (error) Alert.alert('Error', error.message);
-    else {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      await supabase
-      .from('tasks')
-      .insert({ description: 'Onboarding 🥳', user_id: user!.id });
-
-      setIsAuth(true);
-    };
+    else setIsAuth(true);
   }
 
   return (
@@ -53,7 +45,11 @@ export const SignIn = () => {
         style={styles.background}
       />
       <View style={styles.wrapper}>        
-        <Brand style={styles.brand} />
+        <Image
+          source={require('../../assets/brand.png')}
+          style={styles.brand}
+          resizeMode='contain'
+        />
 
         <Text style={styles.title}>
           The best way to predict the future is to create it

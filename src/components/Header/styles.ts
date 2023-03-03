@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { height } = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
   container: {
@@ -20,7 +22,8 @@ export const styles = StyleSheet.create({
     top: 30
   },
   brand: {
-    paddingTop: 80
+    marginTop: height / 38,
+    aspectRatio: 16 / 9
   },
   wrapper: {
     flexDirection: 'row',
