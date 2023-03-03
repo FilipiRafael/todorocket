@@ -24,7 +24,7 @@ export const Header = () => {
   const { setIsAuth } = useContext(AuthContext);
   const { setTasks } = useContext(TasksContext);
   const [description, setDescription] = useState<string>('');
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleAddTask = async () => {

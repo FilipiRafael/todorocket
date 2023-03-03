@@ -16,7 +16,7 @@ import { supabase } from '../../services/supabase';
 import Brand from '../../assets/brand.svg';
 
 export const SignUp = () => {
-  const { navigate, goBack } = useNavigation();
+  const { navigate, goBack } = useNavigation<any>();
 
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');

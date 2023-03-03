@@ -15,7 +15,7 @@ import { supabase } from '../../services/supabase';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export const SignIn = () => {
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<any>();
   const { setIsAuth } = React.useContext(AuthContext);
 
   const [email, setEmail] = React.useState<string>('');
