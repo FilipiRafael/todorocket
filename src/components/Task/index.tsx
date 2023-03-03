@@ -2,11 +2,6 @@ import { useContext } from 'react';
 import { Text, Alert, TouchableOpacity, Pressable } from 'react-native';
 import Animated, { SlideInRight } from 'react-native-reanimated';
 import AnimatedCheckbox from 'react-native-checkbox-reanimated';
-import notifee, {
-  AndroidImportance,
-  TimestampTrigger,
-  TriggerType
-} from '@notifee/react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import { styles } from './styles';
 
@@ -24,33 +19,6 @@ export interface TaskProps {
 
 export const Task = (task: TaskProps) => {
   const { tasks, setTasks } = useContext(TasksContext);
-
-  const displayNotification = async () => {
-    const channelId = await notifee.createChannel({
-      id: 'default',
-      name: 'Default Channel',
-      vibration: true,
-      importance: AndroidImportance.HIGH
-    });
-
-    const date = new Date(Date.now());
-    date.setMinutes(date.getMinutes() + 10);
-
-    const trigger: TimestampTrigger = {
-      type: TriggerType.TIMESTAMP,
-      timestamp: date.getTime()
-    };
-
-    if (!tasks.every((task: TaskProps) => task.done)) {
-      await notifee.createTriggerNotification({
-        id: '1',
-        title: 'Congratulations! 🎉',
-        body: 'You have completed all your tasks',
-        android: {channelId},
-        ios: {sound: 'default'}
-      }, trigger);
-    };
-  };
 
   const handleCheckTask = async (task: TaskProps) => {
     const { error } = await supabase
@@ -74,7 +42,6 @@ export const Task = (task: TaskProps) => {
     setTasks(newTasks);
 
     if (newTasks.every((task: TaskProps) => task.done)) {
-      displayNotification();
       task.playAnimation();
     };
   }

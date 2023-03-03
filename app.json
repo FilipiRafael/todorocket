@@ -20,11 +20,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.todorocket",
-      "buildNumber": "3.0.0"
+      "buildNumber": "4.0.0"
     },
     "android": {
       "package": "com.todorocket",
-      "versionCode": 2,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0D0D0D"
@@ -34,7 +34,6 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "@notifee/react-native",
       [
         "expo-build-properties",
         {
