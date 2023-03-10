@@ -9,7 +9,7 @@ import { TasksProvider } from './src/contexts/tasks';
 Sentry.init({
   dsn: "https://f84d6f08882e4a838fc73d3bf98be274@o4504815931162624.ingest.sentry.io/4504815940272128",
   enableInExpoDevelopment: true,
-  debug: true,
+  debug: false,
   tracesSampleRate: 1.0
 });
 
